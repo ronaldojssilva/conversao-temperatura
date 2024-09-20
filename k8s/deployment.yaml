@@ -1,0 +1,39 @@
+##para ver a versao para usar = kubectl api-resources
+## kubectl api-resources --sort-by=name
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversaotemperatura
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: conversaotemperatura
+  template:
+    metadata:
+      labels:
+        app: conversaotemperatura
+    spec:
+      containers:
+        - image:  ronaldojssilva/conversao-temperatura:latest
+          name:  conversao
+          ports:
+          - name:  http
+            containerPort:  8080
+            protocol: TCP
+ ## kubectl apply k8s/deployment.yaml           
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  conversaotemperatura
+spec:
+  selector:
+    app: conversaotemperatura
+  type:  NodePort
+  ports:
+  - name:  http
+    port:  80
+    targetPort:  8080
+    protocol: TCP
+    nodePort: 30000

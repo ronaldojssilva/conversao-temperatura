@@ -19,6 +19,8 @@ app.get('/fahrenheit/:valor/celsius', (req, res) => {
     res.json({ "celsius": celsius, "maquina": os.hostname() });
 });
 
+// comentaário para testar build da imagem
+
 app.get('/celsius/:valor/fahrenheit', (req, res) => {
 
     let valor = req.params.valor;

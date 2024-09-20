@@ -1,0 +1,5 @@
+k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
+cd "C:\Code\conversao-temperatura\src"
+docker build -t ronaldojssilva/conversao-temperatura:v2 --push .
+docker tag ronaldojssilva/conversao-temperatura:v2 ronaldojssilva/conversao-temperatura:latest
+docker push ronaldojssilva/conversao-temperatura:latest
